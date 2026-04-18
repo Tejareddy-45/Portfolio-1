@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nagasani Sai Tejaswara Reddy — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0B1629; --navy-mid: #152038; --navy-light: #1E3050;
+      --gold: #C9A84C; --gold-light: #E8C97A; --cream: #F5F1EA;
+      --text-muted: #8A9BB5; --text-light: #D4DCE8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); overflow-x: hidden; }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 4rem; background: var(--navy);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      background: var(--navy); padding: 7rem 4rem 6rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before { content: ''; position: absolute; right: -80px; top: -80px; width: 460px; height: 460px; border-radius: 50%; border: 70px solid rgba(201,168,76,0.05); pointer-events: none; }
+    .hero::after { content: ''; position: absolute; right: 60px; top: 60px; width: 300px; height: 300px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.12); pointer-events: none; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--gold); }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; line-height: 1.1; margin-bottom: 1rem; font-weight: 700; }
+    .hero-title { font-size: 1rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 300; line-height: 1.7; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--gold); color: var(--navy); font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 2.2rem; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .hero-cards { display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 1; }
+    .hero-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.15); padding: 2rem; }
+    .hero-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .hero-card-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+    .section { padding: 5.5rem 4rem; }
+    .section-alt { background: #EDEBE4; }
+    .section-dark { background: var(--navy); }
+    .section-header { margin-bottom: 3rem; }
+    .section-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+    .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); display: inline-block; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--navy); line-height: 1.2; }
+    .section-title.light { color: #fff; }
+
+    .about-grid { display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; }
+    .about-avatar { width: 200px; height: 200px; background: var(--navy-light); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); position: relative; flex-shrink: 0; }
+    .about-avatar::after { content: ''; position: absolute; bottom: -10px; right: -10px; width: 100%; height: 100%; border: 1px solid rgba(201,168,76,0.3); z-index: -1; }
+    .about-text { font-size: 1rem; line-height: 1.85; color: #3B4A5E; margin-bottom: 1.5rem; }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .pill { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; padding: 0.4rem 1rem; border: 1px solid rgba(11,22,41,0.2); color: var(--navy); text-transform: uppercase; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .project-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.1); padding: 2rem; transition: border-color 0.25s, transform 0.25s; }
+    .project-card:hover { border-color: rgba(201,168,76,0.5); transform: translateY(-5px); }
+    .project-icon { width: 44px; height: 44px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem; }
+    .project-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { font-size: 0.68rem; letter-spacing: 0.08em; padding: 0.25rem 0.7rem; text-transform: uppercase; background: rgba(201,168,76,0.08); color: var(--gold); border: 1px solid rgba(201,168,76,0.18); }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .skill-group { padding: 1.75rem; border: 1px solid rgba(11,22,41,0.12); background: #fff; }
+    .skill-group-name { font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(11,22,41,0.08); }
+    .skill-item { font-size: 0.88rem; color: #3B4A5E; padding: 0.35rem 0; display: flex; align-items: center; gap: 0.5rem; }
+    .skill-item::before { content: ''; width: 4px; height: 4px; background: var(--gold); flex-shrink: 0; }
+
+    .edu-timeline { display: flex; flex-direction: column; }
+    .edu-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-year { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; padding-top: 0.25rem; }
+    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #fff; margin-bottom: 0.35rem; }
+    .edu-school { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .edu-desc { font-size: 0.82rem; color: rgba(138,155,181,0.8); line-height: 1.65; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-intro { font-size: 1rem; color: #3B4A5E; line-height: 1.85; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link { display: flex; align-items: center; gap: 0.85rem; font-size: 0.9rem; color: var(--navy); padding: 1rem 1.25rem; border: 1px solid rgba(11,22,41,0.15); background: #fff; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .contact-link:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.45rem; }
+    .form-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #6B7A8D; }
+    .form-input { padding: 0.9rem 1rem; border: 1px solid rgba(11,22,41,0.15); background: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--navy); outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: var(--gold); }
+    textarea.form-input { min-height: 130px; resize: vertical; }
+    .form-submit { align-self: flex-start; background: var(--navy); color: var(--gold); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.95rem 2.4rem; border: 1px solid var(--navy); cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .form-submit:hover { background: var(--gold); color: var(--navy); }
+
+    footer { background: #080F1D; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.1); }
+    .footer-name { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1rem; }
+    .footer-copy { font-size: 0.78rem; color: var(--text-muted); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-left > * { animation: fadeUp 0.65s ease both; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.18s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.30s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.42s; }
+
+    @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2,1fr); } .skills-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 900px) { nav { padding: 1.25rem 1.5rem; } .hero { grid-template-columns: 1fr; padding: 4rem 1.5rem; } .hero::before,.hero::after{display:none;} .about-grid{grid-template-columns:1fr;} .contact-grid{grid-template-columns:1fr;gap:3rem;} .edu-item{grid-template-columns:1fr;gap:0.5rem;} .section{padding:3.5rem 1.5rem;} footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center;} }
+    @media (max-width: 600px) { .projects-grid{grid-template-columns:1fr;} .skills-grid{grid-template-columns:1fr;} .nav-links{display:none;} .hero-name{font-size:2rem;} }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">N. Sai Tejaswara</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Software Engineer &amp; CS Student</div>
+      <h1 class="hero-name">Nagasani Sai<br>Tejaswara Reddy</h1>
+      <p class="hero-title">A passionate computer science student building a strong foundation in software engineering, data structures, and backend development — graduating in 2027.</p>
+      <a href="#contact" class="hero-cta">Get in Touch &rarr;</a>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-title">Currently Studying</div>
+        <div class="hero-card-text">Pragati Engineering College &mdash; Graduating 2027. Focused on building solid fundamentals in software engineering and data-driven problem solving.</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">Core Interests</div>
+        <div class="hero-card-text">Data Structures &amp; Algorithms &middot; Object-Oriented Programming &middot; Database Systems &middot; Python &amp; Data Analysis</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-header">
+      <div class="section-tag">Who I Am</div>
+      <h2 class="section-title">About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-avatar">NS</div>
+      <div>
+        <p class="about-text">I'm Nagasani Sai Tejaswara Reddy, a software engineering student at Pragati Engineering College, expected to graduate in 2027. I am passionate about writing clean, efficient code and solving complex problems through technology.</p>
+        <p class="about-text">My academic journey has equipped me with hands-on knowledge of Python, SQL, data analysis with NumPy and Pandas, and core computer science concepts including DSA, Java, and OOP. I am actively growing my skills and looking forward to contributing to real-world software projects.</p>
+        <div class="about-pills">
+          <span class="pill">Problem Solver</span>
+          <span class="pill">Quick Learner</span>
+          <span class="pill">Data Enthusiast</span>
+          <span class="pill">Team Player</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="projects">
+    <div class="section-header">
+      <div class="section-tag">My Work</div>
+      <h2 class="section-title light">Featured Projects</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon">💰</div>
+        <div class="project-name">Expense Tracker</div>
+        <p class="project-desc">A personal finance management app that allows users to log daily expenses, categorise spending, set monthly budgets, and visualise financial trends through interactive charts.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Tkinter</span><span class="tag">SQL</span><span class="tag">Matplotlib</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🏠</div>
+        <div class="project-name">House Price Prediction</div>
+        <p class="project-desc">A machine learning model that predicts residential property prices based on features like location, area, and amenities. Uses regression algorithms with data preprocessing and feature engineering.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span><span class="tag">Regression</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🌸</div>
+        <div class="project-name">Iris Classifier</div>
+        <p class="project-desc">Identifies Iris flower species from sepal and petal measurements. Implements and compares multiple classifiers — KNN, Decision Tree, and SVM — for accuracy benchmarking.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">Seaborn</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="skills">
+    <div class="section-header">
+      <div class="section-tag">Expertise</div>
+      <h2 class="section-title">Technical Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-name">Languages</div>
+        <div class="skill-item">Python</div>
+        <div class="skill-item">Java</div>
+        <div class="skill-item">SQL</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Libraries &amp; Tools</div>
+        <div class="skill-item">NumPy</div>
+        <div class="skill-item">Pandas</div>
+        <div class="skill-item">Scikit-learn</div>
+        <div class="skill-item">Matplotlib / Seaborn</div>
+        <div class="skill-item">DBMS</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Core Concepts</div>
+        <div class="skill-item">Data Structures &amp; Algorithms</div>
+        <div class="skill-item">Object-Oriented Programming</div>
+        <div class="skill-item">Machine Learning Basics</div>
+        <div class="skill-item">Database Design</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Currently Learning</div>
+        <div class="skill-item">Software Engineering Principles</div>
+        <div class="skill-item">Deep Learning</div>
+        <div class="skill-item">Web Development</div>
+        <div class="skill-item">Cloud Fundamentals</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="education">
+    <div class="section-header">
+      <div class="section-tag">Academic Background</div>
+      <h2 class="section-title light">Education</h2>
+    </div>
+    <div class="edu-timeline">
+      <div class="edu-item">
+        <div class="edu-year">2023 — 2027</div>
+        <div>
+          <div class="edu-degree">B.Tech Computer Science &amp; Engineering</div>
+          <div class="edu-school">Pragati Engineering College, Andhra Pradesh</div>
+          <div class="edu-desc">Pursuing a bachelor's degree in Computer Science with a focus on software engineering, data structures, database management, and object-oriented programming. Built projects in machine learning and data analysis. Expected graduation: 2027.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-header">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">I'm open to internships, collaborative projects, and learning opportunities. Feel free to reach out — I'd love to connect with developers, mentors, and recruiters.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:saitejanagasani5467@gmail.com">&#9993;&nbsp; saitejanagasani5467@gmail.com</a>
+          <a class="contact-link" href="tel:+918309674526">&#128222;&nbsp; +91 8309674526</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-field">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="jane@company.com" />
+        </div>
+        <div class="form-field">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" placeholder="Tell me about an internship or collaboration opportunity..."></textarea>
+        </div>
+        <button class="form-submit" onclick="alert('Thanks for your message! I will get back to you soon.')">Send Message &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">Nagasani Sai Tejaswara Reddy</div>
+    <div class="footer-copy">&copy; 2026 &mdash; All rights reserved</div>
+  </footer>
+
+</body>
+</html>
